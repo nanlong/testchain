@@ -11,3 +11,11 @@
 
 # The cache for chain data in container
 .local
+
+.devcontainer
+
+.github
+
+.vscode
+
+.idea/
