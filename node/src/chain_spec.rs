@@ -1,12 +1,15 @@
 use sp_core::{Pair, Public, sr25519};
 use testchain_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
-	SudoConfig, SystemConfig, WASM_BINARY, Signature, ContractsConfig
+	SudoConfig, SystemConfig, WASM_BINARY, Signature, ContractsConfig,
+	EVMConfig, EthereumConfig,
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
 use sp_runtime::traits::{Verify, IdentifyAccount};
 use sc_service::ChainType;
+use std::collections::BTreeMap;
+
 
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -159,5 +162,9 @@ fn testnet_genesis(
 				..Default::default()
 			},
 		}),
+		pallet_evm: Some(EVMConfig {
+			accounts: BTreeMap::new(),
+		}),
+		pallet_ethereum: Some(EthereumConfig {}),
 	}
 }
